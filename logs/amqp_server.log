@@ -1,0 +1,63 @@
+INFO:amqp.server.amqp_server_config:loading configuration
+INFO:amqp.server.amqp_server_config:configuration loaded
+INFO:amqp.server.amqp_server_config:loading configuration
+INFO:amqp.server.amqp_server_config:configuration loaded
+INFO:amqp.server.amqp_server:Starting server
+INFO:amqp.server.amqp_server:Configuring connection
+INFO:amqp.server.amqp_server:AMQP host urls configured
+INFO:amqp.server.amqp_server:Creating a new connection
+INFO:pika.adapters.utils.connection_workflow:Pika version 1.0.1 connecting to ('::1', 5672, 0, 0)
+INFO:pika.adapters.utils.io_services_utils:Socket connected: <socket.socket fd=9, family=AddressFamily.AF_INET6, type=SocketKind.SOCK_STREAM, proto=6, laddr=('::1', 49220, 0, 0), raddr=('::1', 5672, 0, 0)>
+INFO:pika.adapters.utils.connection_workflow:Streaming transport linked up: (<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x108a50e10>, _StreamingProtocolShim: <AsyncioConnection PROTOCOL transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x108a50e10> params=<URLParameters host=localhost port=5672 virtual_host=/ ssl=False>>).
+INFO:amqp.server.amqp_server:Connection opened
+INFO:amqp.server.amqp_server:Creating a new channel
+INFO:pika.adapters.utils.connection_workflow:AMQPConnector - reporting success: <AsyncioConnection OPEN transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x108a50e10> params=<URLParameters host=localhost port=5672 virtual_host=/ ssl=False>>
+INFO:pika.adapters.utils.connection_workflow:AMQPConnectionWorkflow - reporting success: <AsyncioConnection OPEN transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x108a50e10> params=<URLParameters host=localhost port=5672 virtual_host=/ ssl=False>>
+INFO:amqp.server.amqp_server:Channel opened
+INFO:amqp.server.amqp_server:Starting components
+INFO:amqp.server.amqp_server:Starting AMQP RPC Component ID: amqp_server_rpc
+INFO:amqp.server.amqp_server:Starting AMQP Subscriber component ID: amqp_server_sub
+INFO:amqp.server.amqp_server:Starting AMQP Publisher Component ID: amqp_server_pub
+WARNING:pika.channel:Received remote Channel.Close (406): "PRECONDITION_FAILED - inequivalent arg 'durable' for exchange 'task_exchange' in vhost '/': received 'false' but current is 'true'" on <Channel number=1 OPEN conn=<AsyncioConnection OPEN transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x108a50e10> params=<URLParameters host=localhost port=5672 virtual_host=/ ssl=False>>>
+INFO:amqp.server.amqp_server:Channel closed
+INFO:amqp.server.amqp_server_config:loading configuration
+ERROR:amqp.server.amqp_server_config:load configuration failed: Expecting property name enclosed in double quotes: line 11 column 5 (char 333)
+INFO:amqp.server.amqp_server_config:loading configuration
+ERROR:amqp.server.amqp_server_config:load configuration failed: Expecting property name enclosed in double quotes: line 11 column 5 (char 333)
+INFO:amqp.server.amqp_server:Starting server
+INFO:amqp.server.amqp_server:Configuring connection
+ERROR:root:Error: 'NoneType' object is not subscriptable
+INFO:amqp.server.amqp_server_config:loading configuration
+INFO:amqp.server.amqp_server_config:configuration loaded
+INFO:amqp.server.amqp_server_config:loading configuration
+INFO:amqp.server.amqp_server_config:configuration loaded
+INFO:amqp.server.amqp_server:Starting server
+INFO:amqp.server.amqp_server:Configuring connection
+INFO:amqp.server.amqp_server:AMQP host urls configured
+INFO:amqp.server.amqp_server:Creating a new connection
+INFO:pika.adapters.utils.connection_workflow:Pika version 1.0.1 connecting to ('::1', 5672, 0, 0)
+INFO:pika.adapters.utils.io_services_utils:Socket connected: <socket.socket fd=9, family=AddressFamily.AF_INET6, type=SocketKind.SOCK_STREAM, proto=6, laddr=('::1', 52826, 0, 0), raddr=('::1', 5672, 0, 0)>
+INFO:pika.adapters.utils.connection_workflow:Streaming transport linked up: (<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x103cbb2b0>, _StreamingProtocolShim: <AsyncioConnection PROTOCOL transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x103cbb2b0> params=<URLParameters host=localhost port=5672 virtual_host=/ ssl=False>>).
+INFO:amqp.server.amqp_server:Connection opened
+INFO:amqp.server.amqp_server:Creating a new channel
+INFO:pika.adapters.utils.connection_workflow:AMQPConnector - reporting success: <AsyncioConnection OPEN transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x103cbb2b0> params=<URLParameters host=localhost port=5672 virtual_host=/ ssl=False>>
+INFO:pika.adapters.utils.connection_workflow:AMQPConnectionWorkflow - reporting success: <AsyncioConnection OPEN transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x103cbb2b0> params=<URLParameters host=localhost port=5672 virtual_host=/ ssl=False>>
+INFO:amqp.server.amqp_server:Channel opened
+INFO:amqp.server.amqp_server:Starting components
+INFO:amqp.server.amqp_server:Starting AMQP RPC Component ID: amqp_server_rpc
+INFO:amqp.server.amqp_server:Starting AMQP Subscriber component ID: amqp_server_sub
+INFO:amqp.server.amqp_server:Starting AMQP Publisher Component ID: amqp_server_pub
+WARNING:pika.channel:Received remote Channel.Close (406): "PRECONDITION_FAILED - inequivalent arg 'durable' for exchange 'task_exchange' in vhost '/': received 'false' but current is 'true'" on <Channel number=1 OPEN conn=<AsyncioConnection OPEN transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x103cbb2b0> params=<URLParameters host=localhost port=5672 virtual_host=/ ssl=False>>>
+INFO:amqp.server.amqp_server:Channel closed
+INFO:amqp.server.amqp_server:Server started
+ERROR:pika.adapters.utils.io_services_utils:Socket EOF; <socket.socket fd=9, family=AddressFamily.AF_INET6, type=SocketKind.SOCK_STREAM, proto=6, laddr=('::1', 49220, 0, 0), raddr=('::1', 5672, 0, 0)>
+ERROR:pika.adapters.base_connection:Transport indicated EOF.
+INFO:pika.adapters.utils.io_services_utils:protocol.eof_received() elected to close: <socket.socket fd=9, family=AddressFamily.AF_INET6, type=SocketKind.SOCK_STREAM, proto=6, laddr=('::1', 49220, 0, 0), raddr=('::1', 5672, 0, 0)>
+INFO:pika.adapters.utils.io_services_utils:_AsyncTransportBase._initate_abort(): Initiating abrupt asynchronous transport shutdown: state=1; error=None; <socket.socket fd=9, family=AddressFamily.AF_INET6, type=SocketKind.SOCK_STREAM, proto=6, laddr=('::1', 49220, 0, 0), raddr=('::1', 5672, 0, 0)>
+INFO:pika.adapters.utils.io_services_utils:Deactivating transport: state=1; <socket.socket fd=9, family=AddressFamily.AF_INET6, type=SocketKind.SOCK_STREAM, proto=6, laddr=('::1', 49220, 0, 0), raddr=('::1', 5672, 0, 0)>
+ERROR:pika.adapters.base_connection:connection_lost: StreamLostError: ('Transport indicated EOF',)
+INFO:pika.connection:AMQP stack terminated, failed to connect, or aborted: error-arg=StreamLostError: ('Transport indicated EOF',); pending-error=None
+INFO:pika.connection:Stack terminated due to StreamLostError: ('Transport indicated EOF',)
+INFO:amqp.server.amqp_server:Connection closed
+INFO:pika.adapters.utils.io_services_utils:Closing transport socket and unlinking: state=3; <socket.socket fd=9, family=AddressFamily.AF_INET6, type=SocketKind.SOCK_STREAM, proto=6, laddr=('::1', 49220, 0, 0), raddr=('::1', 5672, 0, 0)>
+INFO:amqp.server.amqp_server:Server started

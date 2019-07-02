@@ -1,0 +1,81 @@
+{
+    "name": "AMQP.Ochestrator",
+    "urls": [{
+        "url": "amqp://guest:guest@localhost:5672/%2F",
+        "retry": 3
+    }],
+    "handlers": {
+        "rpc_handler": "amqp.handlers.AmqpRpcCallHandler",
+        "sub_handler": "amqp.handlers.AmqpConsumerHandler",
+        "pub_handler": "amqp.handlers.AmqpProducerHandler"
+    },
+    "components": [{
+            "id": "amqp_server_rpc",
+            "name": "AMQP.RPC.Handler",
+            "mode": "RPC",
+            "handler": "api_handler",
+            "exchange": {
+                "name": "rpc_exchange",
+                "type": "topic",
+                "routing_key": "rpc",
+                "passive": false,
+                "durable": false,
+                "auto_delete": false,
+                "internal": false
+            },
+            "queue": {
+                "name": "rpc_queue",
+                "passive": false,
+                "durable": false,
+                "auto_delete": false,
+                "auto_ack": false,
+                "exclusive": false
+            },
+            "message": {
+                "type": "text/json",
+                "data": "Hello"
+            }
+        },
+        {
+            "id": "amqp_server_sub",
+            "name": "subscriber",
+            "mode": "SUB",
+            "handler": "sub_handler",
+            "queue": {
+                "name": "task_queue",
+                "passive": false,
+                "durable": false,
+                "auto_delete": false,
+                "auto_ack": false,
+                "exclusive": false
+            }
+        },
+        {
+            "id": "amqp_server_pub",
+            "name": "publisher",
+            "mode": "PUB",
+            "handler": "pub_handler",
+            "exchange": {
+                "name": "task_exchange",
+                "type": "topic",
+                "routing_key": "task",
+                "passive": false,
+                "durable": false,
+                "auto_delete": false,
+                "internal": false
+            },
+            "queue": {
+                "name": "task_queue",
+                "passive": false,
+                "durable": false,
+                "auto_delete": false,
+                "auto_ack": false,
+                "exclusive": false
+            },
+            "message": {
+                "type": "text/json",
+                "data": "Hello"
+            }
+        }
+    ]
+}
