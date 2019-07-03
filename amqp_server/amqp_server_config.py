@@ -3,15 +3,15 @@ import logging
 
 LOGGER = logging.getLogger(__name__)
 
-DEFAULT_CONFIG_FILE = "etc/config.json"
 
-class AmqpServerConfiguration(object):
+class AmqpServerConfiguration:
 
-    def __init__(self, filename=None, **kvargs):
-        super(AmqpServerConfiguration, self).__init__(**kvargs)
-        self.filename = filename if filename != None else DEFAULT_CONFIG_FILE
+    DEFAULT_CONFIG_FILE = "etc/config.json"
+
+    def __init__(self, filename=None):
+        self.filename = filename if filename != None else self.DEFAULT_CONFIG_FILE
         self.settings = None
-        self.load_configuration()
+        #self.load_configuration()
 
     def load_configuration(self):
         try:

@@ -1,7 +1,7 @@
 try:
     from setuptools import setup, find_packages
     setup(
-        name="amqp.server",
+        name="amqp_server",
         version="1.0",
         package_dir={''},
         packages=find_packages(),
@@ -23,4 +23,5 @@ try:
         ]
     )
 except:
-    pass
+    import logging
+    logging.error("OUPS! sorry, an error occur ...")

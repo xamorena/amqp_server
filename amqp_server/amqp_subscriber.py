@@ -10,12 +10,7 @@ LOGGER = logging.getLogger(__name__)
 
 class AmqpSubscriber(object):
 
-    EXCHANGE = 'task_exchange'
-    EXCHANGE_TYPE = 'topic'
-    QUEUE = 'task_queue'
-    ROUTING_KEY = 'task.test'
-
-    def __init__(self, amqp_url):
+    def __init__(self, amqp_url, exchange, exchange_type, queue, routing_key):
         self.should_reconnect = False
         self.was_consuming = False
 
@@ -25,9 +20,11 @@ class AmqpSubscriber(object):
         self._consumer_tag = None
         self._url = amqp_url
         self._consuming = False
-        # In production, experiment with higher prefetch values
-        # for higher consumer throughput
         self._prefetch_count = 1
+        self.exchange_name = exchange
+        self.exchange_type = exchange_type
+        self.queue_name = queue
+        self.routing_key = routing_key
 
     def connect(self):
         LOGGER.info('Connecting to %s', self._url)
@@ -73,7 +70,7 @@ class AmqpSubscriber(object):
         LOGGER.info('Channel opened')
         self._channel = channel
         self.add_on_channel_close_callback()
-        self.setup_exchange(self.EXCHANGE)
+        self.setup_exchange(self.exchange_type, self.exchange_name)
 
     def add_on_channel_close_callback(self):
         LOGGER.info('Adding channel close callback')
@@ -83,7 +80,7 @@ class AmqpSubscriber(object):
         LOGGER.warning('Channel %i was closed: %s', channel, reason)
         self.close_connection()
 
-    def setup_exchange(self, exchange_name):
+    def setup_exchange(self, exchange_type, exchange_name):
         LOGGER.info('Declaring exchange: %s', exchange_name)
         # Note: using functools.partial is not required, it is demonstrating
         # how arbitrary data can be passed to the callback when it is called
@@ -91,12 +88,12 @@ class AmqpSubscriber(object):
             self.on_exchange_declareok, userdata=exchange_name)
         self._channel.exchange_declare(
             exchange=exchange_name,
-            exchange_type=self.EXCHANGE_TYPE,
+            exchange_type=exchange_type,
             callback=cb)
 
     def on_exchange_declareok(self, _unused_frame, userdata):
         LOGGER.info('Exchange declared: %s', userdata)
-        self.setup_queue(self.QUEUE)
+        self.setup_queue(self.queue_name)
 
     def setup_queue(self, queue_name):
         LOGGER.info('Declaring queue %s', queue_name)
@@ -105,13 +102,13 @@ class AmqpSubscriber(object):
 
     def on_queue_declareok(self, _unused_frame, userdata):
         queue_name = userdata
-        LOGGER.info('Binding %s to %s with %s', self.EXCHANGE, queue_name,
-                    self.ROUTING_KEY)
+        LOGGER.info('Binding %s to %s with %s', self.exchange_name, queue_name,
+                    self.routing_key)
         cb = functools.partial(self.on_bindok, userdata=queue_name)
         self._channel.queue_bind(
             queue_name,
-            self.EXCHANGE,
-            routing_key=self.ROUTING_KEY,
+            self.exchange_name,
+            routing_key=self.routing_key,
             callback=cb)
 
     def on_bindok(self, _unused_frame, userdata):
@@ -130,7 +127,7 @@ class AmqpSubscriber(object):
         LOGGER.info('Issuing consumer related RPC commands')
         self.add_on_cancel_callback()
         self._consumer_tag = self._channel.basic_consume(
-            self.QUEUE, self.on_message)
+            self.queue_name, self.on_message)
         self.was_consuming = True
         self._consuming = True
 
@@ -189,10 +186,14 @@ class AmqpSubscriber(object):
 
 class AmqpSubscriberRecoverable(object):
 
-    def __init__(self, amqp_url):
+    def __init__(self, amqp_url, exchange, exchange_type, queue, routing_key):
         self._reconnect_delay = 0
         self._amqp_url = amqp_url
-        self._consumer = AmqpSubscriber(self._amqp_url)
+        self.exchange_name = exchange
+        self.exchange_type = exchange_type
+        self.queue_name = queue
+        self.routing_key = routing_key
+        self._consumer = AmqpSubscriber(self._amqp_url, self.exchange_name, self.exchange_type, self.queue_name, self.routing_key)
 
     def run(self):
         while True:
@@ -209,7 +210,7 @@ class AmqpSubscriberRecoverable(object):
             reconnect_delay = self._get_reconnect_delay()
             LOGGER.info('Reconnecting after %d seconds', reconnect_delay)
             time.sleep(reconnect_delay)
-            self._consumer = AmqpSubscriber(self._amqp_url)
+            self._consumer = AmqpSubscriber(self._amqp_url, self.exchange_name, self.exchange_type, self.queue_name, self.routing_key)
 
     def _get_reconnect_delay(self):
         if self._consumer.was_consuming:

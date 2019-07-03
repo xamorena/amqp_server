@@ -1,6 +1,8 @@
 import logging
 import sys
 
+LOG_FORMAT = '%(levelname)s @ %(asctime)s - %(name)s: %(message)s'
+
 def main():
     server = None
     try:
@@ -11,22 +13,24 @@ def main():
         parser.add_argument("-v", "--verbose", action="store_true", help="display information")
         args = parser.parse_args()
         logging.basicConfig(filename=args.logfile, level=logging.INFO)
-        root = logging.getLogger()
-        root.setLevel(logging.INFO)
-        handler = logging.StreamHandler(sys.stdout)
-        handler.setLevel(logging.INFO)
-        formatter = logging.Formatter('%(levelname)s @ %(asctime)s - %(name)s: %(message)s')
-        handler.setFormatter(formatter)
-        root.addHandler(handler)
-        from amqp.server import AmqpServer
-        from amqp.server import AmqpServerConfiguration
+        logger = logging.getLogger()
+        logger.setLevel(logging.INFO)
+        log_handler = logging.StreamHandler(sys.stdout)
+        log_handler.setLevel(logging.INFO)
+        log_formatter = logging.Formatter(LOG_FORMAT)
+        log_handler.setFormatter(log_formatter)
+        logger.addHandler(log_handler)
+        from amqp_server import AmqpServer
+        from amqp_server import AmqpServerConfiguration
         server = AmqpServer(config=AmqpServerConfiguration(filename=args.cfgfile))
-        print("AMQP Server: amqp_server release 1.0 is running on {}".format("localhost"))
+        logger.info("AMQP Server: amqp_server release 1.0 is running on {}".format("localhost"))
         server.start()
     except Exception as err:
         logging.error("Error: {}".format(err))
     except KeyboardInterrupt:
         server.stop()
+    finally:
+        logging.info('Bye!')
 
 if __name__ == "__main__":
     main()

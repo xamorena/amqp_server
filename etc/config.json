@@ -1,79 +1,97 @@
 {
     "name": "AMQP.Ochestrator",
-    "urls": [{
-        "url": "amqp://guest:guest@localhost:5672/%2F",
-        "retry": 3
-    }],
+    "urls": [
+        {
+            "url": "amqp://guest:guest@localhost:5672/%2F",
+            "retry": 3
+        }
+    ],
     "handlers": {
-        "rpc_handler": "amqp.handlers.AmqpRpcCallHandler",
+        "rpc_handler": "amqp.handlers.AmqpRpcProxyHandler",
         "sub_handler": "amqp.handlers.AmqpConsumerHandler",
         "pub_handler": "amqp.handlers.AmqpProducerHandler"
     },
-    "components": [{
-            "id": "amqp_server_rpc",
-            "name": "AMQP.RPC.Handler",
+    "exchanges": [
+        {
+            "name": "rpc_exchange",
+            "type": "topic",
+            "vhost": "/",
+            "passive": false,
+            "durable": false,
+            "auto_delete": false,
+            "internal": false,
+            "arguments": {}
+        }
+    ],
+    "queues": [
+        {
+            "name": "rpc_queue",
+            "vhost": "/",
+            "passive": false,
+            "durable": false,
+            "auto_delete": false,
+            "auto_ack": false,
+            "exclusive": false,
+            "arguments": {}
+        }
+    ],
+    "bindings": [
+        {
+            "source": "rpc_exchange",
+            "vhost": "/",
+            "destination": "rpc_queue",
+            "destination_type": "queue",
+            "routing_key": "rpc",
+            "arguments": {}
+        },
+        {
+            "source": "task_exchange",
+            "vhost": "/",
+            "destination": "task_queue",
+            "destination_type": "queue",
+            "routing_key": "task",
+            "arguments": {}
+        },
+        {
+            "source": "task_exchange",
+            "vhost": "/",
+            "destination": "task_queue",
+            "destination_type": "queue",
+            "routing_key": "task.echo",
+            "arguments": {}
+        }
+    ],
+    "components": [
+        {
+            "id": "amqp_rpcproxy",
+            "name": "rpcproxy",
             "mode": "RPC",
-            "handler": "api_handler",
-            "exchange": {
-                "name": "rpc_exchange",
-                "type": "topic",
-                "routing_key": "rpc",
-                "passive": false,
-                "durable": false,
-                "auto_delete": false,
-                "internal": false
-            },
-            "queue": {
-                "name": "rpc_queue",
-                "passive": false,
-                "durable": false,
-                "auto_delete": false,
-                "auto_ack": false,
-                "exclusive": false
-            },
+            "handler": "rpc_handler",
+            "exchange_name": "rpc_exchange",
+            "routing_key": "rpc",
+            "queue_name": "rpc_queue",
             "message": {
-                "type": "text/json",
+                "type": "application/json",
                 "data": "Hello"
             }
         },
         {
-            "id": "amqp_server_sub",
-            "name": "subscriber",
+            "id": "amqp_consumer",
+            "name": "consumer",
             "mode": "SUB",
             "handler": "sub_handler",
-            "queue": {
-                "name": "task_queue",
-                "passive": false,
-                "durable": false,
-                "auto_delete": false,
-                "auto_ack": false,
-                "exclusive": false
-            }
+            "queue_name": "task_queue"
         },
         {
-            "id": "amqp_server_pub",
-            "name": "publisher",
+            "id": "amqp_producer",
+            "name": "producer",
             "mode": "PUB",
             "handler": "pub_handler",
-            "exchange": {
-                "name": "task_exchange",
-                "type": "topic",
-                "routing_key": "task",
-                "passive": false,
-                "durable": false,
-                "auto_delete": false,
-                "internal": false
-            },
-            "queue": {
-                "name": "task_queue",
-                "passive": false,
-                "durable": false,
-                "auto_delete": false,
-                "auto_ack": false,
-                "exclusive": false
-            },
+            "exchange_name": "task_exchange",
+            "routing_key": "task",
+            "queue_name": "task_queue",
             "message": {
-                "type": "text/json",
+                "type": "application/json",
                 "data": "Hello"
             }
         }

@@ -10,11 +10,13 @@ from pika.adapters.asyncio_connection import AsyncioConnection
 
 LOGGER = logging.getLogger(__name__)
 
+
 class AmqpServer(object):
 
     def __init__(self, config=AmqpServerConfiguration(), **kvargs):
         super(AmqpServer, self).__init__(**kvargs)
         self.config = config if config != None else AmqpServerConfiguration()
+        self.config.load_configuration()
 
     def start(self):
         LOGGER.info('Starting server')
@@ -28,9 +30,11 @@ class AmqpServer(object):
         LOGGER.info('Server restarted')
 
     def stop(self):
-        LOGGER.info('Stopping server')
-        self.close_connection()
-        LOGGER.info('Server stopped')
+        try:
+            LOGGER.info('Stopping server')
+            self.close_connection()
+        except:
+            LOGGER.info('Server stopped')
 
     def on_connection_opened(self, _unused_connection):
         LOGGER.info('Connection opened')
@@ -61,8 +65,11 @@ class AmqpServer(object):
     def on_queue_bindok(self, component):
         LOGGER.info('Queue bind ok')
 
-    def on_message(self, object, _unused_channel, basic_deliver, properties, body):
-        LOGGER.info('Message receive')
+    def on_message(self, _unused_channel, basic_deliver, properties, body):
+        LOGGER.info("Message receive %s %s",
+                    basic_deliver.delivery_tag, properties.app_id)
+        # forward to the handler
+        self.channel.basic_ack(basic_deliver.delivery_tag)
 
     def create_connection(self, parameters):
         LOGGER.info('Creating a new connection')
@@ -103,66 +110,57 @@ class AmqpServer(object):
         return self.channel
 
     def start_rpc_component(self, component):
-        LOGGER.info("Starting AMQP RPC Component ID: {}".format(component['id']))
-        ename = component['exchange']['name']
-        etype = component['exchange']['type']
-        rkey = component['exchange']['routing_key']
-        qname = component['queue']['name']
-        passive = component['exchange']['passive']
-        durable = component['exchange']['durable']
-        auto_delete = component['exchange']['auto_delete']
-        internal = component['exchange']['internal']
-        self.channel.exchange_declare(exchange=ename, exchange_type=etype, passive=passive, durable=durable, auto_delete=auto_delete, internal=internal)
-        passive = component['queue']['passive']
-        durable = component['queue']['durable']
-        exclusive = component['queue']['exclusive']
-        auto_delete = component['queue']['auto_delete']
-        self.channel.queue_declare(queue=qname)
-        self.channel.queue_bind(qname, ename, routing_key=rkey)
-        self.channel.basic_qos(prefetch_count=1)
-        auto_ack = component['queue']['auto_ack']
-        exclusive = component['queue']['exclusive']
-        cb = functools.partial(self.on_message, object=component)
-        self.consumer_tag = self.channel.basic_consume(qname,
-                                                       cb, auto_ack=auto_ack,
-                                                       exclusive=exclusive)
+        LOGGER.info("AMQP RPCProxy Component ID: %s", component['id'])
+        queue = component['queue_name']
+        self.consumer_tag = self.channel.basic_consume(queue, self.on_message)
 
     def start_pub_component(self, component):
-        LOGGER.info("Starting AMQP Publisher Component ID: {}".format(component['id']))
-        ename = component['exchange']['name']
-        etype = component['exchange']['type']
-        rkey = component['exchange']['routing_key']
-        qname = component['queue']['name']
-        #cbe = functools.partial(self.on_exchange_declareok, component=component)
-        self.channel.exchange_declare(exchange=ename, exchange_type=etype)#, callback=cbe)
-        #cbq = functools.partial(self.on_queue_declareok, component=component)
-        self.channel.queue_declare(queue=qname)#, callback=cbq)
-        #cbb = functools.partial(self.on_queue_bindok, component=component)
-        self.channel.queue_bind(qname, ename, routing_key=rkey)#, callback=cbb)
-        self.channel.basic_qos(prefetch_count=1)
+        LOGGER.info("AMQP Publisher Component ID: %s", component['id'])
         headers = {u'X-AUTH-ID': u'ABCD123456789'}
         properties = pika.BasicProperties(app_id=component['id'],
                                           content_type=component['message']['type'],
                                           headers=headers)
+        exchange = component['exchange_name']
+        routing_key = component['routing_key']
         message = component['message']['data']
-        self.channel.basic_publish(ename, rkey, json.dumps(
-            message, ensure_ascii=False), properties)
+        self.channel.basic_publish(exchange,
+                                   routing_key,
+                                   json.dumps(message, ensure_ascii=False),
+                                   properties)
 
     def start_sub_component(self, component):
-        LOGGER.info("Starting AMQP Subscriber component ID: {}".format(component['id']))
-        qname = component['queue']['name']
-        #cbq = functools.partial(self.on_queue_declareok, component=component)
-        self.channel.queue_declare(queue=qname)#, callback=cbq)
-        self.channel.basic_qos(prefetch_count=1)
-        auto_ack = component['queue']['auto_ack']
-        exclusive = component['queue']['exclusive']
-        cb = functools.partial(self.on_message, object=component)
-        self.consumer_tag = self.channel.basic_consume(qname, 
-                                                       cb, 
-                                                       auto_ack=auto_ack,
-                                                       exclusive=exclusive)
+        LOGGER.info("AMQP Subscriber Component ID: %s", component['id'])
+        queue = component['queue_name']
+        self.consumer_tag = self.channel.basic_consume(queue, self.on_message)
 
     def start_components(self):
+        LOGGER.info('Creating exchanges')
+        for exchange in self.config.settings['exchanges']:
+            self.channel.exchange_declare(exchange["name"],
+                                          exchange_type=exchange["type"],
+                                          passive=exchange["passive"],
+                                          durable=exchange["durable"],
+                                          auto_delete=exchange["auto_delete"],
+                                          internal=exchange["internal"],
+                                          arguments=exchange["arguments"])
+
+        LOGGER.info('Creating queues')
+        for queue in self.config.settings['queues']:
+            self.channel.queue_declare(queue["name"],
+                                       passive=queue["passive"],
+                                       exclusive=queue["exclusive"],
+                                       durable=queue["durable"],
+                                       auto_delete=queue["auto_delete"],
+                                       arguments=queue["arguments"])
+
+        LOGGER.info('Creating bindings')
+        for binding in self.config.settings['bindings']:
+            if binding["destination_type"] == 'queue':
+                self.channel.queue_bind(binding["destination"],
+                                        binding["source"],
+                                        routing_key=binding["routing_key"])
+
+        self.channel.basic_qos(prefetch_count=1)
         LOGGER.info('Starting components')
         for component in self.config.settings['components']:
             mode = component['mode'].upper()
