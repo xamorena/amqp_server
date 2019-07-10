@@ -3,7 +3,7 @@ try:
     setup(
         name="amqp_server",
         version="1.0",
-        package_dir={''},
+        package_dir={'':'.'},
         packages=find_packages(),
         scripts=['server.py'],
         install_requires=['pika>=1.0.1'],
