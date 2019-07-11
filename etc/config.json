@@ -7,9 +7,15 @@
         }
     ],
     "handlers": {
-        "rpc_handler": "amqp.handlers.AmqpRpcProxyHandler",
-        "sub_handler": "amqp.handlers.AmqpConsumerHandler",
-        "pub_handler": "amqp.handlers.AmqpProducerHandler"
+        "rpc_handler": {
+            "class": "amqp_server.AmqpRpcProxyHandler"
+        },
+        "sub_handler": {
+            "class": "amqp_server.AmqpConsumerHandler"
+        },
+        "pub_handler": {
+            "class": "amqp_server.AmqpProducerHandler"
+        }
     },
     "exchanges": [
         {

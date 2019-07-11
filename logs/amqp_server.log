@@ -1,0 +1,495 @@
+INFO:amqp_server.amqp_server_config:loading configuration
+INFO:amqp_server.amqp_server_config:configuration loaded
+ERROR:root:Error: too many values to unpack (expected 2)
+INFO:root:Bye!
+INFO:amqp_server.amqp_server_config:loading configuration
+INFO:amqp_server.amqp_server_config:configuration loaded
+ERROR:root:Error: too many values to unpack (expected 2)
+INFO:root:Bye!
+INFO:amqp_server.amqp_server_config:loading configuration
+INFO:amqp_server.amqp_server_config:configuration loaded
+ERROR:root:Error: too many values to unpack (expected 2)
+INFO:root:Bye!
+INFO:amqp_server.amqp_server_config:loading configuration
+INFO:amqp_server.amqp_server_config:configuration loaded
+ERROR:root:Error: too many values to unpack (expected 2)
+INFO:root:Bye!
+INFO:amqp_server.amqp_server_config:loading configuration
+INFO:amqp_server.amqp_server_config:configuration loaded
+ERROR:root:Error: too many values to unpack (expected 2)
+INFO:root:Bye!
+INFO:amqp_server.amqp_server_config:loading configuration
+INFO:amqp_server.amqp_server_config:configuration loaded
+INFO:root:Creating exchanges
+INFO:root:declare exchange (1, '*** Could not connect: [Errno 61] Connection refused\n')
+INFO:root:Creating queues
+INFO:root:declare queue (1, '*** Could not connect: [Errno 61] Connection refused\n')
+INFO:root:Creating bindings
+INFO:root:declare binding (1, '*** Could not connect: [Errno 61] Connection refused\n')
+INFO:root:declare binding (1, '*** Could not connect: [Errno 61] Connection refused\n')
+INFO:root:declare binding (1, '*** Could not connect: [Errno 61] Connection refused\n')
+INFO:root:Bye!
+INFO:amqp_server.amqp_server_config:loading configuration
+INFO:amqp_server.amqp_server_config:configuration loaded
+ERROR:root:Error: too many values to unpack (expected 2)
+INFO:root:Bye!
+ERROR:amqp_server.amqp_server:Configuraring services
+INFO:amqp_server.amqp_server_config:loading configuration
+INFO:amqp_server.amqp_server_config:configuration loaded
+ERROR:amqp_server.amqp_server:Service configuration failed: too many values to unpack (expected 2)
+INFO:root:AMQP Server: amqp_server release 1.0 is running on localhost
+INFO:amqp_server.amqp_server:Starting server
+INFO:amqp_server.amqp_server:Configuring connection
+INFO:amqp_server.amqp_server:AMQP host urls configured
+INFO:amqp_server.amqp_server:Creating a new connection
+DEBUG:asyncio:Using selector: KqueueSelector
+DEBUG:pika.connection:New Connection state: CLOSED (prev=CLOSED)
+DEBUG:pika.callback:Added: {'callback': <bound method Connection._on_connection_start of <AsyncioConnection CLOSED transport=None params=<URLParameters host=localhost port=5672 virtual_host=/ ssl=False>>>, 'one_shot': True, 'only': None, 'arguments': None, 'calls': 1}
+DEBUG:pika.callback:Added: {'callback': <bound method Connection._on_connection_close_from_broker of <AsyncioConnection CLOSED transport=None params=<URLParameters host=localhost port=5672 virtual_host=/ ssl=False>>>, 'one_shot': True, 'only': None, 'arguments': None, 'calls': 1}
+DEBUG:pika.callback:Added: {'callback': <bound method AmqpServer.on_connection_open_error of <amqp_server.amqp_server.AmqpServer object at 0x102f1a9b0>>, 'one_shot': False, 'only': None, 'arguments': None}
+DEBUG:pika.callback:Added: {'callback': <bound method AmqpServer.on_connection_opened of <amqp_server.amqp_server.AmqpServer object at 0x102f1a9b0>>, 'one_shot': False, 'only': None, 'arguments': None}
+DEBUG:pika.callback:Added: {'callback': <bound method AmqpServer.on_connection_closed of <amqp_server.amqp_server.AmqpServer object at 0x102f1a9b0>>, 'one_shot': False, 'only': None, 'arguments': None}
+DEBUG:pika.connection:New Connection state: INIT (prev=CLOSED)
+DEBUG:pika.adapters.utils.connection_workflow:Starting AMQP Connection workflow asynchronously.
+DEBUG:pika.adapters.utils.connection_workflow:Beginning a new AMQP connection workflow cycle; attempts remaining after this: 0
+DEBUG:pika.adapters.utils.connection_workflow:_try_next_config_async: 'localhost':5672
+DEBUG:pika.adapters.utils.connection_workflow:getaddrinfo returned 2 records
+DEBUG:pika.adapters.utils.connection_workflow:Attempting to connect using address record (<AddressFamily.AF_INET6: 30>, <SocketKind.SOCK_STREAM: 1>, 6, '', ('::1', 5672, 0, 0))
+INFO:pika.adapters.utils.connection_workflow:Pika version 1.0.1 connecting to ('::1', 5672, 0, 0)
+DEBUG:pika.adapters.asyncio_connection:set_writer(9, _)
+DEBUG:pika.adapters.utils.io_services_utils:Connection-establishment is in progress for <socket.socket fd=9, family=AddressFamily.AF_INET6, type=SocketKind.SOCK_STREAM, proto=6, laddr=('::1', 58010, 0, 0)>.
+ERROR:pika.adapters.utils.io_services_utils:Socket failed to connect: <socket.socket fd=9, family=AddressFamily.AF_INET6, type=SocketKind.SOCK_STREAM, proto=6, laddr=('::1', 58010, 0, 0)>; error=61 (Connection refused)
+DEBUG:pika.adapters.utils.io_services_utils:_AsyncSocketConnector._report_completion(ConnectionRefusedError(61, 'Connection refused')); <socket.socket fd=9, family=AddressFamily.AF_INET6, type=SocketKind.SOCK_STREAM, proto=6, laddr=('::1', 58010, 0, 0)>
+DEBUG:pika.adapters.asyncio_connection:remove_writer(9)
+ERROR:pika.adapters.utils.connection_workflow:TCP Connection attempt failed: ConnectionRefusedError(61, 'Connection refused'); dest=(<AddressFamily.AF_INET6: 30>, <SocketKind.SOCK_STREAM: 1>, 6, '', ('::1', 5672, 0, 0))
+ERROR:pika.adapters.utils.connection_workflow:AMQPConnector - reporting failure: AMQPConnectorSocketConnectError: ConnectionRefusedError(61, 'Connection refused')
+DEBUG:pika.adapters.utils.connection_workflow:Connection attempt completed with AMQPConnectorSocketConnectError: ConnectionRefusedError(61, 'Connection refused')
+DEBUG:pika.adapters.utils.connection_workflow:Attempting to connect using address record (<AddressFamily.AF_INET: 2>, <SocketKind.SOCK_STREAM: 1>, 6, '', ('127.0.0.1', 5672))
+INFO:pika.adapters.utils.connection_workflow:Pika version 1.0.1 connecting to ('127.0.0.1', 5672)
+DEBUG:pika.adapters.asyncio_connection:set_writer(9, _)
+DEBUG:pika.adapters.utils.io_services_utils:Connection-establishment is in progress for <socket.socket fd=9, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=6, laddr=('127.0.0.1', 58011)>.
+ERROR:pika.adapters.utils.io_services_utils:Socket failed to connect: <socket.socket fd=9, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=6, laddr=('127.0.0.1', 58011)>; error=61 (Connection refused)
+DEBUG:pika.adapters.utils.io_services_utils:_AsyncSocketConnector._report_completion(ConnectionRefusedError(61, 'Connection refused')); <socket.socket fd=9, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=6, laddr=('127.0.0.1', 58011)>
+DEBUG:pika.adapters.asyncio_connection:remove_writer(9)
+ERROR:pika.adapters.utils.connection_workflow:TCP Connection attempt failed: ConnectionRefusedError(61, 'Connection refused'); dest=(<AddressFamily.AF_INET: 2>, <SocketKind.SOCK_STREAM: 1>, 6, '', ('127.0.0.1', 5672))
+ERROR:pika.adapters.utils.connection_workflow:AMQPConnector - reporting failure: AMQPConnectorSocketConnectError: ConnectionRefusedError(61, 'Connection refused')
+DEBUG:pika.adapters.utils.connection_workflow:Connection attempt completed with AMQPConnectorSocketConnectError: ConnectionRefusedError(61, 'Connection refused')
+DEBUG:pika.adapters.utils.connection_workflow:_try_next_resolved_address: continuing with next config.
+DEBUG:pika.adapters.utils.connection_workflow:_try_next_config_async: starting a new cycle.
+ERROR:pika.adapters.utils.connection_workflow:AMQP connection workflow failed: AMQPConnectionWorkflowFailed: 2 exceptions in all; last exception - AMQPConnectorSocketConnectError: ConnectionRefusedError(61, 'Connection refused'); first exception - AMQPConnectorSocketConnectError: ConnectionRefusedError(61, 'Connection refused').
+ERROR:pika.adapters.utils.connection_workflow:AMQPConnectionWorkflow - reporting failure: AMQPConnectionWorkflowFailed: 2 exceptions in all; last exception - AMQPConnectorSocketConnectError: ConnectionRefusedError(61, 'Connection refused'); first exception - AMQPConnectorSocketConnectError: ConnectionRefusedError(61, 'Connection refused')
+DEBUG:pika.adapters.base_connection:Full-stack connection workflow completed: AMQPConnectionWorkflowFailed: 2 exceptions in all; last exception - AMQPConnectorSocketConnectError: ConnectionRefusedError(61, 'Connection refused'); first exception - AMQPConnectorSocketConnectError: ConnectionRefusedError(61, 'Connection refused')
+ERROR:pika.adapters.base_connection:Full-stack connection workflow failed: AMQPConnectionWorkflowFailed: 2 exceptions in all; last exception - AMQPConnectorSocketConnectError: ConnectionRefusedError(61, 'Connection refused'); first exception - AMQPConnectorSocketConnectError: ConnectionRefusedError(61, 'Connection refused')
+ERROR:pika.adapters.base_connection:Self-initiated stack bring-up failed: AMQPConnectionError: (AMQPConnectionWorkflowFailed: 2 exceptions in all; last exception - AMQPConnectorSocketConnectError: ConnectionRefusedError(61, 'Connection refused'); first exception - AMQPConnectorSocketConnectError: ConnectionRefusedError(61, 'Connection refused'),)
+INFO:pika.connection:AMQP stack terminated, failed to connect, or aborted: error-arg=AMQPConnectionError: (AMQPConnectionWorkflowFailed: 2 exceptions in all; last exception - AMQPConnectorSocketConnectError: ConnectionRefusedError(61, 'Connection refused'); first exception - AMQPConnectorSocketConnectError: ConnectionRefusedError(61, 'Connection refused'),); pending-error=None
+DEBUG:pika.connection:New Connection state: CLOSED (prev=INIT)
+INFO:pika.connection:Connection setup terminated due to AMQPConnectionError: (AMQPConnectionWorkflowFailed: 2 exceptions in all; last exception - AMQPConnectorSocketConnectError: ConnectionRefusedError(61, 'Connection refused'); first exception - AMQPConnectorSocketConnectError: ConnectionRefusedError(61, 'Connection refused'),)
+DEBUG:pika.callback:Processing 0:_on_connection_error
+DEBUG:pika.callback:Calling <bound method AmqpServer.on_connection_open_error of <amqp_server.amqp_server.AmqpServer object at 0x102f1a9b0>> for "0:_on_connection_error"
+INFO:amqp_server.amqp_server:Connection open failed, reconnect
+INFO:amqp_server.amqp_server:Restarting server
+INFO:amqp_server.amqp_server:Closing connection
+ERROR:pika.connection:Illegal close(200, 'Normal shutdown') request on <AsyncioConnection CLOSED transport=None params=<URLParameters host=localhost port=5672 virtual_host=/ ssl=False>> because it was called while connection state=CLOSED.
+ERROR:pika.callback:Calling <bound method AmqpServer.on_connection_open_error of <amqp_server.amqp_server.AmqpServer object at 0x102f1a9b0>> for "0:_on_connection_error" failed
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.7/site-packages/pika/adapters/utils/connection_workflow.py", line 815, in _try_next_resolved_address
+    addr_record = next(self._addrinfo_iter)
+StopIteration
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/xavier/Projects/Python/amqp_server/amqp_server/amqp_server.py", line 124, in close_connection
+    self.connection.close()
+  File "/usr/local/lib/python3.7/site-packages/pika/connection.py", line 1280, in close
+    raise exceptions.ConnectionWrongStateError(msg)
+pika.exceptions.ConnectionWrongStateError: Illegal close(200, 'Normal shutdown') request on <AsyncioConnection CLOSED transport=None params=<URLParameters host=localhost port=5672 virtual_host=/ ssl=False>> because it was called while connection state=CLOSED.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.7/site-packages/pika/callback.py", line 233, in process
+    callback(*args, **keywords)
+  File "/Users/xavier/Projects/Python/amqp_server/amqp_server/amqp_server.py", line 93, in on_connection_open_error
+    self.restart()
+  File "/Users/xavier/Projects/Python/amqp_server/amqp_server/amqp_server.py", line 67, in restart
+    self.close_connection()
+  File "/Users/xavier/Projects/Python/amqp_server/amqp_server/amqp_server.py", line 127, in close_connection
+    LOGGER.warnning('Connection close failed')
+AttributeError: 'Logger' object has no attribute 'warnning'
+ERROR:pika.adapters.utils.io_services_utils:Wrapped func exited with exception. Caller's stack:
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.7/site-packages/pika/adapters/utils/connection_workflow.py", line 815, in _try_next_resolved_address
+    addr_record = next(self._addrinfo_iter)
+StopIteration
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/xavier/Projects/Python/amqp_server/amqp_server/amqp_server.py", line 124, in close_connection
+    self.connection.close()
+  File "/usr/local/lib/python3.7/site-packages/pika/connection.py", line 1280, in close
+    raise exceptions.ConnectionWrongStateError(msg)
+pika.exceptions.ConnectionWrongStateError: Illegal close(200, 'Normal shutdown') request on <AsyncioConnection CLOSED transport=None params=<URLParameters host=localhost port=5672 virtual_host=/ ssl=False>> because it was called while connection state=CLOSED.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.7/site-packages/pika/diagnostic_utils.py", line 53, in log_exception_func_wrap
+    return func(*args, **kwargs)
+  File "/usr/local/lib/python3.7/site-packages/pika/adapters/utils/io_services_utils.py", line 286, in _report_completion
+    self._on_done(result)
+  File "/usr/local/lib/python3.7/site-packages/pika/adapters/utils/connection_workflow.py", line 378, in _on_tcp_connection_done
+    AMQPConnectorSocketConnectError(exc))
+  File "/usr/local/lib/python3.7/site-packages/pika/adapters/utils/connection_workflow.py", line 298, in _report_completion_and_cleanup
+    on_done(result)
+  File "/usr/local/lib/python3.7/site-packages/pika/adapters/utils/connection_workflow.py", line 863, in _on_connector_done
+    self._try_next_resolved_address()
+  File "/usr/local/lib/python3.7/site-packages/pika/adapters/utils/connection_workflow.py", line 819, in _try_next_resolved_address
+    self._try_next_config_async()
+  File "/usr/local/lib/python3.7/site-packages/pika/adapters/utils/connection_workflow.py", line 774, in _try_next_config_async
+    self._start_new_cycle_async(first=False)
+  File "/usr/local/lib/python3.7/site-packages/pika/adapters/utils/connection_workflow.py", line 747, in _start_new_cycle_async
+    self._report_completion_and_cleanup(error)
+  File "/usr/local/lib/python3.7/site-packages/pika/adapters/utils/connection_workflow.py", line 730, in _report_completion_and_cleanup
+    on_done(result)
+  File "/usr/local/lib/python3.7/site-packages/pika/adapters/base_connection.py", line 263, in _unshim_connection_workflow_callback
+    user_on_done(result)
+  File "/usr/local/lib/python3.7/site-packages/pika/adapters/base_connection.py", line 337, in _on_connection_workflow_done
+    self._handle_connection_workflow_failure(conn_or_exc)
+  File "/usr/local/lib/python3.7/site-packages/pika/adapters/base_connection.py", line 360, in _handle_connection_workflow_failure
+    self._on_stream_terminated(error)
+  File "/usr/local/lib/python3.7/site-packages/pika/connection.py", line 2059, in _on_stream_terminated
+    self._error)
+  File "/usr/local/lib/python3.7/site-packages/pika/callback.py", line 60, in wrapper
+    return function(*tuple(args), **kwargs)
+  File "/usr/local/lib/python3.7/site-packages/pika/callback.py", line 92, in wrapper
+    return function(*args, **kwargs)
+  File "/usr/local/lib/python3.7/site-packages/pika/callback.py", line 233, in process
+    callback(*args, **keywords)
+  File "/Users/xavier/Projects/Python/amqp_server/amqp_server/amqp_server.py", line 93, in on_connection_open_error
+    self.restart()
+  File "/Users/xavier/Projects/Python/amqp_server/amqp_server/amqp_server.py", line 67, in restart
+    self.close_connection()
+  File "/Users/xavier/Projects/Python/amqp_server/amqp_server/amqp_server.py", line 127, in close_connection
+    LOGGER.warnning('Connection close failed')
+AttributeError: 'Logger' object has no attribute 'warnning'
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.7/site-packages/pika/adapters/utils/connection_workflow.py", line 815, in _try_next_resolved_address
+    addr_record = next(self._addrinfo_iter)
+StopIteration
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/xavier/Projects/Python/amqp_server/amqp_server/amqp_server.py", line 124, in close_connection
+    self.connection.close()
+  File "/usr/local/lib/python3.7/site-packages/pika/connection.py", line 1280, in close
+    raise exceptions.ConnectionWrongStateError(msg)
+pika.exceptions.ConnectionWrongStateError: Illegal close(200, 'Normal shutdown') request on <AsyncioConnection CLOSED transport=None params=<URLParameters host=localhost port=5672 virtual_host=/ ssl=False>> because it was called while connection state=CLOSED.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.7/site-packages/pika/diagnostic_utils.py", line 53, in log_exception_func_wrap
+    return func(*args, **kwargs)
+  File "/usr/local/lib/python3.7/site-packages/pika/adapters/utils/io_services_utils.py", line 286, in _report_completion
+    self._on_done(result)
+  File "/usr/local/lib/python3.7/site-packages/pika/adapters/utils/connection_workflow.py", line 378, in _on_tcp_connection_done
+    AMQPConnectorSocketConnectError(exc))
+  File "/usr/local/lib/python3.7/site-packages/pika/adapters/utils/connection_workflow.py", line 298, in _report_completion_and_cleanup
+    on_done(result)
+  File "/usr/local/lib/python3.7/site-packages/pika/adapters/utils/connection_workflow.py", line 863, in _on_connector_done
+    self._try_next_resolved_address()
+  File "/usr/local/lib/python3.7/site-packages/pika/adapters/utils/connection_workflow.py", line 819, in _try_next_resolved_address
+    self._try_next_config_async()
+  File "/usr/local/lib/python3.7/site-packages/pika/adapters/utils/connection_workflow.py", line 774, in _try_next_config_async
+    self._start_new_cycle_async(first=False)
+  File "/usr/local/lib/python3.7/site-packages/pika/adapters/utils/connection_workflow.py", line 747, in _start_new_cycle_async
+    self._report_completion_and_cleanup(error)
+  File "/usr/local/lib/python3.7/site-packages/pika/adapters/utils/connection_workflow.py", line 730, in _report_completion_and_cleanup
+    on_done(result)
+  File "/usr/local/lib/python3.7/site-packages/pika/adapters/base_connection.py", line 263, in _unshim_connection_workflow_callback
+    user_on_done(result)
+  File "/usr/local/lib/python3.7/site-packages/pika/adapters/base_connection.py", line 337, in _on_connection_workflow_done
+    self._handle_connection_workflow_failure(conn_or_exc)
+  File "/usr/local/lib/python3.7/site-packages/pika/adapters/base_connection.py", line 360, in _handle_connection_workflow_failure
+    self._on_stream_terminated(error)
+  File "/usr/local/lib/python3.7/site-packages/pika/connection.py", line 2059, in _on_stream_terminated
+    self._error)
+  File "/usr/local/lib/python3.7/site-packages/pika/callback.py", line 60, in wrapper
+    return function(*tuple(args), **kwargs)
+  File "/usr/local/lib/python3.7/site-packages/pika/callback.py", line 92, in wrapper
+    return function(*args, **kwargs)
+  File "/usr/local/lib/python3.7/site-packages/pika/callback.py", line 233, in process
+    callback(*args, **keywords)
+  File "/Users/xavier/Projects/Python/amqp_server/amqp_server/amqp_server.py", line 93, in on_connection_open_error
+    self.restart()
+  File "/Users/xavier/Projects/Python/amqp_server/amqp_server/amqp_server.py", line 67, in restart
+    self.close_connection()
+  File "/Users/xavier/Projects/Python/amqp_server/amqp_server/amqp_server.py", line 127, in close_connection
+    LOGGER.warnning('Connection close failed')
+AttributeError: 'Logger' object has no attribute 'warnning'
+ERROR:pika.adapters.utils.io_services_utils:Wrapped func exited with exception. Caller's stack:
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.7/site-packages/pika/adapters/utils/connection_workflow.py", line 815, in _try_next_resolved_address
+    addr_record = next(self._addrinfo_iter)
+StopIteration
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/xavier/Projects/Python/amqp_server/amqp_server/amqp_server.py", line 124, in close_connection
+    self.connection.close()
+  File "/usr/local/lib/python3.7/site-packages/pika/connection.py", line 1280, in close
+    raise exceptions.ConnectionWrongStateError(msg)
+pika.exceptions.ConnectionWrongStateError: Illegal close(200, 'Normal shutdown') request on <AsyncioConnection CLOSED transport=None params=<URLParameters host=localhost port=5672 virtual_host=/ ssl=False>> because it was called while connection state=CLOSED.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.7/site-packages/pika/diagnostic_utils.py", line 53, in log_exception_func_wrap
+    return func(*args, **kwargs)
+  File "/usr/local/lib/python3.7/site-packages/pika/adapters/utils/io_services_utils.py", line 353, in _on_writable
+    self._report_completion(result)
+  File "/usr/local/lib/python3.7/site-packages/pika/diagnostic_utils.py", line 53, in log_exception_func_wrap
+    return func(*args, **kwargs)
+  File "/usr/local/lib/python3.7/site-packages/pika/adapters/utils/io_services_utils.py", line 286, in _report_completion
+    self._on_done(result)
+  File "/usr/local/lib/python3.7/site-packages/pika/adapters/utils/connection_workflow.py", line 378, in _on_tcp_connection_done
+    AMQPConnectorSocketConnectError(exc))
+  File "/usr/local/lib/python3.7/site-packages/pika/adapters/utils/connection_workflow.py", line 298, in _report_completion_and_cleanup
+    on_done(result)
+  File "/usr/local/lib/python3.7/site-packages/pika/adapters/utils/connection_workflow.py", line 863, in _on_connector_done
+    self._try_next_resolved_address()
+  File "/usr/local/lib/python3.7/site-packages/pika/adapters/utils/connection_workflow.py", line 819, in _try_next_resolved_address
+    self._try_next_config_async()
+  File "/usr/local/lib/python3.7/site-packages/pika/adapters/utils/connection_workflow.py", line 774, in _try_next_config_async
+    self._start_new_cycle_async(first=False)
+  File "/usr/local/lib/python3.7/site-packages/pika/adapters/utils/connection_workflow.py", line 747, in _start_new_cycle_async
+    self._report_completion_and_cleanup(error)
+  File "/usr/local/lib/python3.7/site-packages/pika/adapters/utils/connection_workflow.py", line 730, in _report_completion_and_cleanup
+    on_done(result)
+  File "/usr/local/lib/python3.7/site-packages/pika/adapters/base_connection.py", line 263, in _unshim_connection_workflow_callback
+    user_on_done(result)
+  File "/usr/local/lib/python3.7/site-packages/pika/adapters/base_connection.py", line 337, in _on_connection_workflow_done
+    self._handle_connection_workflow_failure(conn_or_exc)
+  File "/usr/local/lib/python3.7/site-packages/pika/adapters/base_connection.py", line 360, in _handle_connection_workflow_failure
+    self._on_stream_terminated(error)
+  File "/usr/local/lib/python3.7/site-packages/pika/connection.py", line 2059, in _on_stream_terminated
+    self._error)
+  File "/usr/local/lib/python3.7/site-packages/pika/callback.py", line 60, in wrapper
+    return function(*tuple(args), **kwargs)
+  File "/usr/local/lib/python3.7/site-packages/pika/callback.py", line 92, in wrapper
+    return function(*args, **kwargs)
+  File "/usr/local/lib/python3.7/site-packages/pika/callback.py", line 233, in process
+    callback(*args, **keywords)
+  File "/Users/xavier/Projects/Python/amqp_server/amqp_server/amqp_server.py", line 93, in on_connection_open_error
+    self.restart()
+  File "/Users/xavier/Projects/Python/amqp_server/amqp_server/amqp_server.py", line 67, in restart
+    self.close_connection()
+  File "/Users/xavier/Projects/Python/amqp_server/amqp_server/amqp_server.py", line 127, in close_connection
+    LOGGER.warnning('Connection close failed')
+AttributeError: 'Logger' object has no attribute 'warnning'
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.7/site-packages/pika/adapters/utils/connection_workflow.py", line 815, in _try_next_resolved_address
+    addr_record = next(self._addrinfo_iter)
+StopIteration
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/xavier/Projects/Python/amqp_server/amqp_server/amqp_server.py", line 124, in close_connection
+    self.connection.close()
+  File "/usr/local/lib/python3.7/site-packages/pika/connection.py", line 1280, in close
+    raise exceptions.ConnectionWrongStateError(msg)
+pika.exceptions.ConnectionWrongStateError: Illegal close(200, 'Normal shutdown') request on <AsyncioConnection CLOSED transport=None params=<URLParameters host=localhost port=5672 virtual_host=/ ssl=False>> because it was called while connection state=CLOSED.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.7/site-packages/pika/diagnostic_utils.py", line 53, in log_exception_func_wrap
+    return func(*args, **kwargs)
+  File "/usr/local/lib/python3.7/site-packages/pika/adapters/utils/io_services_utils.py", line 353, in _on_writable
+    self._report_completion(result)
+  File "/usr/local/lib/python3.7/site-packages/pika/diagnostic_utils.py", line 53, in log_exception_func_wrap
+    return func(*args, **kwargs)
+  File "/usr/local/lib/python3.7/site-packages/pika/adapters/utils/io_services_utils.py", line 286, in _report_completion
+    self._on_done(result)
+  File "/usr/local/lib/python3.7/site-packages/pika/adapters/utils/connection_workflow.py", line 378, in _on_tcp_connection_done
+    AMQPConnectorSocketConnectError(exc))
+  File "/usr/local/lib/python3.7/site-packages/pika/adapters/utils/connection_workflow.py", line 298, in _report_completion_and_cleanup
+    on_done(result)
+  File "/usr/local/lib/python3.7/site-packages/pika/adapters/utils/connection_workflow.py", line 863, in _on_connector_done
+    self._try_next_resolved_address()
+  File "/usr/local/lib/python3.7/site-packages/pika/adapters/utils/connection_workflow.py", line 819, in _try_next_resolved_address
+    self._try_next_config_async()
+  File "/usr/local/lib/python3.7/site-packages/pika/adapters/utils/connection_workflow.py", line 774, in _try_next_config_async
+    self._start_new_cycle_async(first=False)
+  File "/usr/local/lib/python3.7/site-packages/pika/adapters/utils/connection_workflow.py", line 747, in _start_new_cycle_async
+    self._report_completion_and_cleanup(error)
+  File "/usr/local/lib/python3.7/site-packages/pika/adapters/utils/connection_workflow.py", line 730, in _report_completion_and_cleanup
+    on_done(result)
+  File "/usr/local/lib/python3.7/site-packages/pika/adapters/base_connection.py", line 263, in _unshim_connection_workflow_callback
+    user_on_done(result)
+  File "/usr/local/lib/python3.7/site-packages/pika/adapters/base_connection.py", line 337, in _on_connection_workflow_done
+    self._handle_connection_workflow_failure(conn_or_exc)
+  File "/usr/local/lib/python3.7/site-packages/pika/adapters/base_connection.py", line 360, in _handle_connection_workflow_failure
+    self._on_stream_terminated(error)
+  File "/usr/local/lib/python3.7/site-packages/pika/connection.py", line 2059, in _on_stream_terminated
+    self._error)
+  File "/usr/local/lib/python3.7/site-packages/pika/callback.py", line 60, in wrapper
+    return function(*tuple(args), **kwargs)
+  File "/usr/local/lib/python3.7/site-packages/pika/callback.py", line 92, in wrapper
+    return function(*args, **kwargs)
+  File "/usr/local/lib/python3.7/site-packages/pika/callback.py", line 233, in process
+    callback(*args, **keywords)
+  File "/Users/xavier/Projects/Python/amqp_server/amqp_server/amqp_server.py", line 93, in on_connection_open_error
+    self.restart()
+  File "/Users/xavier/Projects/Python/amqp_server/amqp_server/amqp_server.py", line 67, in restart
+    self.close_connection()
+  File "/Users/xavier/Projects/Python/amqp_server/amqp_server/amqp_server.py", line 127, in close_connection
+    LOGGER.warnning('Connection close failed')
+AttributeError: 'Logger' object has no attribute 'warnning'
+ERROR:asyncio:Exception in callback None()
+handle: <Handle cancelled>
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.7/site-packages/pika/adapters/utils/connection_workflow.py", line 815, in _try_next_resolved_address
+    addr_record = next(self._addrinfo_iter)
+StopIteration
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/xavier/Projects/Python/amqp_server/amqp_server/amqp_server.py", line 124, in close_connection
+    self.connection.close()
+  File "/usr/local/lib/python3.7/site-packages/pika/connection.py", line 1280, in close
+    raise exceptions.ConnectionWrongStateError(msg)
+pika.exceptions.ConnectionWrongStateError: Illegal close(200, 'Normal shutdown') request on <AsyncioConnection CLOSED transport=None params=<URLParameters host=localhost port=5672 virtual_host=/ ssl=False>> because it was called while connection state=CLOSED.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/Cellar/python/3.7.3/Frameworks/Python.framework/Versions/3.7/lib/python3.7/asyncio/events.py", line 88, in _run
+    self._context.run(self._callback, *self._args)
+  File "/usr/local/lib/python3.7/site-packages/pika/diagnostic_utils.py", line 53, in log_exception_func_wrap
+    return func(*args, **kwargs)
+  File "/usr/local/lib/python3.7/site-packages/pika/adapters/utils/io_services_utils.py", line 353, in _on_writable
+    self._report_completion(result)
+  File "/usr/local/lib/python3.7/site-packages/pika/diagnostic_utils.py", line 53, in log_exception_func_wrap
+    return func(*args, **kwargs)
+  File "/usr/local/lib/python3.7/site-packages/pika/adapters/utils/io_services_utils.py", line 286, in _report_completion
+    self._on_done(result)
+  File "/usr/local/lib/python3.7/site-packages/pika/adapters/utils/connection_workflow.py", line 378, in _on_tcp_connection_done
+    AMQPConnectorSocketConnectError(exc))
+  File "/usr/local/lib/python3.7/site-packages/pika/adapters/utils/connection_workflow.py", line 298, in _report_completion_and_cleanup
+    on_done(result)
+  File "/usr/local/lib/python3.7/site-packages/pika/adapters/utils/connection_workflow.py", line 863, in _on_connector_done
+    self._try_next_resolved_address()
+  File "/usr/local/lib/python3.7/site-packages/pika/adapters/utils/connection_workflow.py", line 819, in _try_next_resolved_address
+    self._try_next_config_async()
+  File "/usr/local/lib/python3.7/site-packages/pika/adapters/utils/connection_workflow.py", line 774, in _try_next_config_async
+    self._start_new_cycle_async(first=False)
+  File "/usr/local/lib/python3.7/site-packages/pika/adapters/utils/connection_workflow.py", line 747, in _start_new_cycle_async
+    self._report_completion_and_cleanup(error)
+  File "/usr/local/lib/python3.7/site-packages/pika/adapters/utils/connection_workflow.py", line 730, in _report_completion_and_cleanup
+    on_done(result)
+  File "/usr/local/lib/python3.7/site-packages/pika/adapters/base_connection.py", line 263, in _unshim_connection_workflow_callback
+    user_on_done(result)
+  File "/usr/local/lib/python3.7/site-packages/pika/adapters/base_connection.py", line 337, in _on_connection_workflow_done
+    self._handle_connection_workflow_failure(conn_or_exc)
+  File "/usr/local/lib/python3.7/site-packages/pika/adapters/base_connection.py", line 360, in _handle_connection_workflow_failure
+    self._on_stream_terminated(error)
+  File "/usr/local/lib/python3.7/site-packages/pika/connection.py", line 2059, in _on_stream_terminated
+    self._error)
+  File "/usr/local/lib/python3.7/site-packages/pika/callback.py", line 60, in wrapper
+    return function(*tuple(args), **kwargs)
+  File "/usr/local/lib/python3.7/site-packages/pika/callback.py", line 92, in wrapper
+    return function(*args, **kwargs)
+  File "/usr/local/lib/python3.7/site-packages/pika/callback.py", line 233, in process
+    callback(*args, **keywords)
+  File "/Users/xavier/Projects/Python/amqp_server/amqp_server/amqp_server.py", line 93, in on_connection_open_error
+    self.restart()
+  File "/Users/xavier/Projects/Python/amqp_server/amqp_server/amqp_server.py", line 67, in restart
+    self.close_connection()
+  File "/Users/xavier/Projects/Python/amqp_server/amqp_server/amqp_server.py", line 127, in close_connection
+    LOGGER.warnning('Connection close failed')
+AttributeError: 'Logger' object has no attribute 'warnning'
+INFO:amqp_server.amqp_server:Server started
+INFO:root:Bye!
+ERROR:amqp_server.amqp_server:Configuraring services
+INFO:amqp_server.amqp_server_config:loading configuration
+INFO:amqp_server.amqp_server_config:configuration loaded
+ERROR:amqp_server.amqp_server:Service configuration failed: too many values to unpack (expected 2)
+INFO:root:AMQP Server: amqp_server release 1.0 is running on localhost
+INFO:amqp_server.amqp_server:Starting server
+INFO:amqp_server.amqp_server:Configuring connection
+INFO:amqp_server.amqp_server:AMQP host urls configured
+INFO:amqp_server.amqp_server:Creating a new connection
+DEBUG:asyncio:Using selector: KqueueSelector
+DEBUG:pika.connection:New Connection state: CLOSED (prev=CLOSED)
+DEBUG:pika.callback:Added: {'callback': <bound method Connection._on_connection_start of <AsyncioConnection CLOSED transport=None params=<URLParameters host=localhost port=5672 virtual_host=/ ssl=False>>>, 'one_shot': True, 'only': None, 'arguments': None, 'calls': 1}
+DEBUG:pika.callback:Added: {'callback': <bound method Connection._on_connection_close_from_broker of <AsyncioConnection CLOSED transport=None params=<URLParameters host=localhost port=5672 virtual_host=/ ssl=False>>>, 'one_shot': True, 'only': None, 'arguments': None, 'calls': 1}
+DEBUG:pika.callback:Added: {'callback': <bound method AmqpServer.on_connection_open_error of <amqp_server.amqp_server.AmqpServer object at 0x10f07a978>>, 'one_shot': False, 'only': None, 'arguments': None}
+DEBUG:pika.callback:Added: {'callback': <bound method AmqpServer.on_connection_opened of <amqp_server.amqp_server.AmqpServer object at 0x10f07a978>>, 'one_shot': False, 'only': None, 'arguments': None}
+DEBUG:pika.callback:Added: {'callback': <bound method AmqpServer.on_connection_closed of <amqp_server.amqp_server.AmqpServer object at 0x10f07a978>>, 'one_shot': False, 'only': None, 'arguments': None}
+DEBUG:pika.connection:New Connection state: INIT (prev=CLOSED)
+DEBUG:pika.adapters.utils.connection_workflow:Starting AMQP Connection workflow asynchronously.
+DEBUG:pika.adapters.utils.connection_workflow:Beginning a new AMQP connection workflow cycle; attempts remaining after this: 0
+DEBUG:pika.adapters.utils.connection_workflow:_try_next_config_async: 'localhost':5672
+DEBUG:pika.adapters.utils.connection_workflow:getaddrinfo returned 2 records
+DEBUG:pika.adapters.utils.connection_workflow:Attempting to connect using address record (<AddressFamily.AF_INET6: 30>, <SocketKind.SOCK_STREAM: 1>, 6, '', ('::1', 5672, 0, 0))
+INFO:pika.adapters.utils.connection_workflow:Pika version 1.0.1 connecting to ('::1', 5672, 0, 0)
+DEBUG:pika.adapters.asyncio_connection:set_writer(9, _)
+DEBUG:pika.adapters.utils.io_services_utils:Connection-establishment is in progress for <socket.socket fd=9, family=AddressFamily.AF_INET6, type=SocketKind.SOCK_STREAM, proto=6, laddr=('::1', 58053, 0, 0)>.
+ERROR:pika.adapters.utils.io_services_utils:Socket failed to connect: <socket.socket fd=9, family=AddressFamily.AF_INET6, type=SocketKind.SOCK_STREAM, proto=6, laddr=('::1', 58053, 0, 0)>; error=61 (Connection refused)
+DEBUG:pika.adapters.utils.io_services_utils:_AsyncSocketConnector._report_completion(ConnectionRefusedError(61, 'Connection refused')); <socket.socket fd=9, family=AddressFamily.AF_INET6, type=SocketKind.SOCK_STREAM, proto=6, laddr=('::1', 58053, 0, 0)>
+DEBUG:pika.adapters.asyncio_connection:remove_writer(9)
+ERROR:pika.adapters.utils.connection_workflow:TCP Connection attempt failed: ConnectionRefusedError(61, 'Connection refused'); dest=(<AddressFamily.AF_INET6: 30>, <SocketKind.SOCK_STREAM: 1>, 6, '', ('::1', 5672, 0, 0))
+ERROR:pika.adapters.utils.connection_workflow:AMQPConnector - reporting failure: AMQPConnectorSocketConnectError: ConnectionRefusedError(61, 'Connection refused')
+DEBUG:pika.adapters.utils.connection_workflow:Connection attempt completed with AMQPConnectorSocketConnectError: ConnectionRefusedError(61, 'Connection refused')
+DEBUG:pika.adapters.utils.connection_workflow:Attempting to connect using address record (<AddressFamily.AF_INET: 2>, <SocketKind.SOCK_STREAM: 1>, 6, '', ('127.0.0.1', 5672))
+INFO:pika.adapters.utils.connection_workflow:Pika version 1.0.1 connecting to ('127.0.0.1', 5672)
+DEBUG:pika.adapters.asyncio_connection:set_writer(9, _)
+DEBUG:pika.adapters.utils.io_services_utils:Connection-establishment is in progress for <socket.socket fd=9, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=6, laddr=('127.0.0.1', 58054)>.
+ERROR:pika.adapters.utils.io_services_utils:Socket failed to connect: <socket.socket fd=9, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=6, laddr=('127.0.0.1', 58054)>; error=61 (Connection refused)
+DEBUG:pika.adapters.utils.io_services_utils:_AsyncSocketConnector._report_completion(ConnectionRefusedError(61, 'Connection refused')); <socket.socket fd=9, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=6, laddr=('127.0.0.1', 58054)>
+DEBUG:pika.adapters.asyncio_connection:remove_writer(9)
+ERROR:pika.adapters.utils.connection_workflow:TCP Connection attempt failed: ConnectionRefusedError(61, 'Connection refused'); dest=(<AddressFamily.AF_INET: 2>, <SocketKind.SOCK_STREAM: 1>, 6, '', ('127.0.0.1', 5672))
+ERROR:pika.adapters.utils.connection_workflow:AMQPConnector - reporting failure: AMQPConnectorSocketConnectError: ConnectionRefusedError(61, 'Connection refused')
+DEBUG:pika.adapters.utils.connection_workflow:Connection attempt completed with AMQPConnectorSocketConnectError: ConnectionRefusedError(61, 'Connection refused')
+DEBUG:pika.adapters.utils.connection_workflow:_try_next_resolved_address: continuing with next config.
+DEBUG:pika.adapters.utils.connection_workflow:_try_next_config_async: starting a new cycle.
+ERROR:pika.adapters.utils.connection_workflow:AMQP connection workflow failed: AMQPConnectionWorkflowFailed: 2 exceptions in all; last exception - AMQPConnectorSocketConnectError: ConnectionRefusedError(61, 'Connection refused'); first exception - AMQPConnectorSocketConnectError: ConnectionRefusedError(61, 'Connection refused').
+ERROR:pika.adapters.utils.connection_workflow:AMQPConnectionWorkflow - reporting failure: AMQPConnectionWorkflowFailed: 2 exceptions in all; last exception - AMQPConnectorSocketConnectError: ConnectionRefusedError(61, 'Connection refused'); first exception - AMQPConnectorSocketConnectError: ConnectionRefusedError(61, 'Connection refused')
+DEBUG:pika.adapters.base_connection:Full-stack connection workflow completed: AMQPConnectionWorkflowFailed: 2 exceptions in all; last exception - AMQPConnectorSocketConnectError: ConnectionRefusedError(61, 'Connection refused'); first exception - AMQPConnectorSocketConnectError: ConnectionRefusedError(61, 'Connection refused')
+ERROR:pika.adapters.base_connection:Full-stack connection workflow failed: AMQPConnectionWorkflowFailed: 2 exceptions in all; last exception - AMQPConnectorSocketConnectError: ConnectionRefusedError(61, 'Connection refused'); first exception - AMQPConnectorSocketConnectError: ConnectionRefusedError(61, 'Connection refused')
+ERROR:pika.adapters.base_connection:Self-initiated stack bring-up failed: AMQPConnectionError: (AMQPConnectionWorkflowFailed: 2 exceptions in all; last exception - AMQPConnectorSocketConnectError: ConnectionRefusedError(61, 'Connection refused'); first exception - AMQPConnectorSocketConnectError: ConnectionRefusedError(61, 'Connection refused'),)
+INFO:pika.connection:AMQP stack terminated, failed to connect, or aborted: error-arg=AMQPConnectionError: (AMQPConnectionWorkflowFailed: 2 exceptions in all; last exception - AMQPConnectorSocketConnectError: ConnectionRefusedError(61, 'Connection refused'); first exception - AMQPConnectorSocketConnectError: ConnectionRefusedError(61, 'Connection refused'),); pending-error=None
+DEBUG:pika.connection:New Connection state: CLOSED (prev=INIT)
+INFO:pika.connection:Connection setup terminated due to AMQPConnectionError: (AMQPConnectionWorkflowFailed: 2 exceptions in all; last exception - AMQPConnectorSocketConnectError: ConnectionRefusedError(61, 'Connection refused'); first exception - AMQPConnectorSocketConnectError: ConnectionRefusedError(61, 'Connection refused'),)
+DEBUG:pika.callback:Processing 0:_on_connection_error
+DEBUG:pika.callback:Calling <bound method AmqpServer.on_connection_open_error of <amqp_server.amqp_server.AmqpServer object at 0x10f07a978>> for "0:_on_connection_error"
+INFO:amqp_server.amqp_server:Connection open failed, reconnect
+INFO:amqp_server.amqp_server:Restarting server
+INFO:amqp_server.amqp_server:Closing connection
+ERROR:pika.connection:Illegal close(200, 'Normal shutdown') request on <AsyncioConnection CLOSED transport=None params=<URLParameters host=localhost port=5672 virtual_host=/ ssl=False>> because it was called while connection state=CLOSED.
+WARNING:amqp_server.amqp_server:Connection close failed
+INFO:amqp_server.amqp_server:Configuring connection
+INFO:amqp_server.amqp_server:AMQP host urls configured
+INFO:amqp_server.amqp_server:Creating a new connection
+DEBUG:pika.connection:New Connection state: CLOSED (prev=CLOSED)
+DEBUG:pika.callback:Added: {'callback': <bound method Connection._on_connection_start of <AsyncioConnection CLOSED transport=None params=<URLParameters host=localhost port=5672 virtual_host=/ ssl=False>>>, 'one_shot': True, 'only': None, 'arguments': None, 'calls': 1}
+DEBUG:pika.callback:Added: {'callback': <bound method Connection._on_connection_close_from_broker of <AsyncioConnection CLOSED transport=None params=<URLParameters host=localhost port=5672 virtual_host=/ ssl=False>>>, 'one_shot': True, 'only': None, 'arguments': None, 'calls': 1}
+DEBUG:pika.callback:Added: {'callback': <bound method AmqpServer.on_connection_open_error of <amqp_server.amqp_server.AmqpServer object at 0x10f07a978>>, 'one_shot': False, 'only': None, 'arguments': None}
+DEBUG:pika.callback:Added: {'callback': <bound method AmqpServer.on_connection_opened of <amqp_server.amqp_server.AmqpServer object at 0x10f07a978>>, 'one_shot': False, 'only': None, 'arguments': None}
+DEBUG:pika.callback:Added: {'callback': <bound method AmqpServer.on_connection_closed of <amqp_server.amqp_server.AmqpServer object at 0x10f07a978>>, 'one_shot': False, 'only': None, 'arguments': None}
+DEBUG:pika.connection:New Connection state: INIT (prev=CLOSED)
+DEBUG:pika.adapters.utils.connection_workflow:Starting AMQP Connection workflow asynchronously.
+WARNING:amqp_server.amqp_server:Connection open failed
+INFO:amqp_server.amqp_server:Server restarted
+DEBUG:pika.connection:New Connection state: CLOSED (prev=CLOSED)
+DEBUG:pika.callback:Incremented callback reference counter: {'callback': <bound method Connection._on_connection_start of <AsyncioConnection CLOSED transport=None params=<URLParameters host=localhost port=5672 virtual_host=/ ssl=False>>>, 'one_shot': True, 'only': None, 'arguments': None, 'calls': 2}
+DEBUG:pika.callback:Incremented callback reference counter: {'callback': <bound method Connection._on_connection_close_from_broker of <AsyncioConnection CLOSED transport=None params=<URLParameters host=localhost port=5672 virtual_host=/ ssl=False>>>, 'one_shot': True, 'only': None, 'arguments': None, 'calls': 2}
+INFO:amqp_server.amqp_server:Server started
+INFO:root:Bye!

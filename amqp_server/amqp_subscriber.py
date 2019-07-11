@@ -10,7 +10,8 @@ LOGGER = logging.getLogger(__name__)
 
 class AmqpSubscriber(object):
 
-    def __init__(self, amqp_url, exchange, exchange_type, queue, routing_key):
+    def __init__(self, amqp_url, exchange, exchange_type, queue, routing_key, **kwargs):
+        super(AmqpSubscriber, self).__init__(**kwargs)
         self.should_reconnect = False
         self.was_consuming = False
 

@@ -1,5 +1,5 @@
 from .amqp_server_config import AmqpServerConfiguration
-
+from .amqp_service_component import AmqpServiceComponent
 import json
 import pika
 import random
@@ -13,10 +13,49 @@ LOGGER = logging.getLogger(__name__)
 
 class AmqpServer(object):
 
-    def __init__(self, config=AmqpServerConfiguration(), **kvargs):
-        super(AmqpServer, self).__init__(**kvargs)
+    def __init__(self, config=AmqpServerConfiguration(), **kwargs):
+        super(AmqpServer, self).__init__(**kwargs)
         self.config = config if config != None else AmqpServerConfiguration()
-        self.config.load_configuration()
+        self.handlers = dict()
+        self.components = []
+        self.setup_services()
+
+    def setup_service_handler(self, name, config):
+        try:
+            k_name = config['class']
+            items = k_name.split('.')
+            m_name = ".".join(items[:-1])
+            m = __import__(m_name)
+            with items[1:] as k:
+                LOGGER.info('Registrering service handler: %s %s', name, k_name)
+                h = getattr(m, k)
+                h.setup_handler(config)
+                self.handlers[name] = h
+        except Exception as err:
+            LOGGER.error('Handler registration failed: %s', str(err))
+            pass
+
+    def setup_service_component(self, config):
+        try:
+            LOGGER.info('Registration service component')
+            c = AmqpServiceComponent(self)
+            c.setup_component(config)
+            self.components.append(c)
+        except Exception as err:
+            LOGGER.error('Handler registration failed: %s', str(err))
+            pass
+
+    def setup_services(self):
+        try:
+            LOGGER.error('Configuraring services')
+            self.config.load_configuration()
+            for (name, handler) in self.config.settings['handlers']:
+                self.setup_service_handler(name, handler)
+            for component in self.config.settings['components']:
+                self.setup_service_component(component)
+        except Exception as err:
+            LOGGER.error('Service configuration failed: %s', str(err))
+            pass
 
     def start(self):
         LOGGER.info('Starting server')
@@ -85,7 +124,7 @@ class AmqpServer(object):
             self.connection.close()
             self.connection = None
         except:
-            LOGGER.warnning('Connection close failed')
+            LOGGER.warning('Connection close failed')
 
     def open_connection(self):
         LOGGER.info('Configuring connection')
@@ -99,7 +138,7 @@ class AmqpServer(object):
             self.connection = self.create_connection(parameters)
             self.connection.ioloop.run_forever()
         except:
-            LOGGER.warnning('Connection open failed')
+            LOGGER.warning('Connection open failed')
         finally:
             return self.connection
 

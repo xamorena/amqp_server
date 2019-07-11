@@ -14,7 +14,8 @@ class AmqpPublisher(object):
     APP_ID = 'amqp_publisher'
     PUBLISH_INTERVAL = 1
 
-    def __init__(self, amqp_url, exchange, exchange_type, queue, routing_key):
+    def __init__(self, amqp_url, exchange, exchange_type, queue, routing_key, **kwargs):
+        super(AmqpPublisher, self).__init__(**kwargs)
         self._connection = None
         self._channel = None
 
