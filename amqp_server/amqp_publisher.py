@@ -2,9 +2,10 @@
 # pylint: disable=C0111,C0103,R0205
 
 import functools
-import logging
 import json
 import pika
+from urllib.parse import urlparse
+import logging
 
 LOGGER = logging.getLogger(__name__)
 
@@ -33,8 +34,16 @@ class AmqpPublisher(object):
 
     def connect(self):
         LOGGER.info('Connecting to %s', self._url)
+        url = urlparse(self._url)
+        creds = pika.PlainCredentials(url.username, url.password)
+        parameters = pika.ConnectionParameters(
+            host=url.hostname,
+            port=url.port,
+            virtual_host=url.path,
+            credentials=creds
+        )
         return pika.SelectConnection(
-            pika.URLParameters(self._url),
+            parameters=parameters,
             on_open_callback=self.on_connection_open,
             on_open_error_callback=self.on_connection_open_error,
             on_close_callback=self.on_connection_closed)

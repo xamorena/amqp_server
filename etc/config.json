@@ -1,8 +1,8 @@
 {
     "name": "AMQP.Ochestrator",
-    "urls": [
+    "host": [
         {
-            "url": "amqp://guest:guest@localhost:5672/%2F",
+            "url": "amqp://admin:admin@mbroker:5672/",
             "retry": 3
         }
     ],
@@ -19,6 +19,16 @@
     },
     "exchanges": [
         {
+            "name": "task_exchange",
+            "type": "topic",
+            "vhost": "/",
+            "passive": false,
+            "durable": false,
+            "auto_delete": false,
+            "internal": false,
+            "arguments": {}
+        },
+        {
             "name": "rpc_exchange",
             "type": "topic",
             "vhost": "/",
@@ -30,6 +40,16 @@
         }
     ],
     "queues": [
+        {
+            "name": "task_queue",
+            "vhost": "/",
+            "passive": false,
+            "durable": false,
+            "auto_delete": false,
+            "auto_ack": false,
+            "exclusive": false,
+            "arguments": {}
+        },
         {
             "name": "rpc_queue",
             "vhost": "/",
@@ -56,14 +76,6 @@
             "destination": "task_queue",
             "destination_type": "queue",
             "routing_key": "task",
-            "arguments": {}
-        },
-        {
-            "source": "task_exchange",
-            "vhost": "/",
-            "destination": "task_queue",
-            "destination_type": "queue",
-            "routing_key": "task.echo",
             "arguments": {}
         }
     ],

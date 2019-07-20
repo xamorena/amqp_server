@@ -3,11 +3,13 @@ from .amqp_service_component import AmqpServiceComponent
 import json
 import pika
 import random
-import logging
 import functools
+from urllib.parse import urlparse
+from importlib import import_module
 
 from pika.adapters.asyncio_connection import AsyncioConnection
 
+import logging
 LOGGER = logging.getLogger(__name__)
 
 
@@ -22,37 +24,40 @@ class AmqpServer(object):
 
     def setup_service_handler(self, name, config):
         try:
-            k_name = config['class']
-            items = k_name.split('.')
-            m_name = ".".join(items[:-1])
-            m = __import__(m_name)
-            with items[1:] as k:
-                LOGGER.info('Registrering service handler: %s %s', name, k_name)
-                h = getattr(m, k)
-                h.setup_handler(config)
-                self.handlers[name] = h
+            klass_name = config['class']
+            LOGGER.info('Registering service handler: %s', klass_name)
+            module_path, class_name = klass_name.rsplit('.', 1)
+            module = import_module(module_path)
+            klass = getattr(module, class_name)
+            handler = klass()
+            handler.setup_handler(config)
+            self.handlers[name] = handler
+            LOGGER.info('Service handler registered: %s', klass_name)
         except Exception as err:
             LOGGER.error('Handler registration failed: %s', str(err))
             pass
 
     def setup_service_component(self, config):
         try:
-            LOGGER.info('Registration service component')
+            LOGGER.info('Registrating service component')
             c = AmqpServiceComponent(self)
-            c.setup_component(config)
+            handler = self.handlers[config['handler']]
+            c.setup_component(config, handler)
             self.components.append(c)
+            LOGGER.info('Service component registered')
         except Exception as err:
             LOGGER.error('Handler registration failed: %s', str(err))
             pass
 
     def setup_services(self):
         try:
-            LOGGER.error('Configuraring services')
+            LOGGER.info('Configuring services')
             self.config.load_configuration()
-            for (name, handler) in self.config.settings['handlers']:
-                self.setup_service_handler(name, handler)
+            for name in self.config.settings['handlers']:
+                self.setup_service_handler(name,  self.config.settings['handlers'][name])
             for component in self.config.settings['components']:
                 self.setup_service_component(component)
+            LOGGER.info('Services configured')
         except Exception as err:
             LOGGER.error('Service configuration failed: %s', str(err))
             pass
@@ -129,13 +134,19 @@ class AmqpServer(object):
     def open_connection(self):
         LOGGER.info('Configuring connection')
         params = []
-        for entry in self.config.settings['urls']:
-            param = pika.URLParameters(entry['url'])
+        for entry in self.config.settings['host']:
+            url = urlparse(entry['url'])
+            creds = pika.PlainCredentials(url.username, url.password)
+            param = pika.ConnectionParameters(
+                host=url.hostname,
+                port=url.port,
+                virtual_host=url.path,
+                credentials=creds
+            )
             params.append(param)
             LOGGER.info('AMQP host urls configured')
         try:
-            parameters = params[0]
-            self.connection = self.create_connection(parameters)
+            self.connection = self.create_connection(params[0])
             self.connection.ioloop.run_forever()
         except:
             LOGGER.warning('Connection open failed')
@@ -147,30 +158,6 @@ class AmqpServer(object):
         self.channel = self.connection.channel(
             on_open_callback=self.on_channel_opened)
         return self.channel
-
-    def start_rpc_component(self, component):
-        LOGGER.info("AMQP RPCProxy Component ID: %s", component['id'])
-        queue = component['queue_name']
-        self.consumer_tag = self.channel.basic_consume(queue, self.on_message)
-
-    def start_pub_component(self, component):
-        LOGGER.info("AMQP Publisher Component ID: %s", component['id'])
-        headers = {u'X-AUTH-ID': u'ABCD123456789'}
-        properties = pika.BasicProperties(app_id=component['id'],
-                                          content_type=component['message']['type'],
-                                          headers=headers)
-        exchange = component['exchange_name']
-        routing_key = component['routing_key']
-        message = component['message']['data']
-        self.channel.basic_publish(exchange,
-                                   routing_key,
-                                   json.dumps(message, ensure_ascii=False),
-                                   properties)
-
-    def start_sub_component(self, component):
-        LOGGER.info("AMQP Subscriber Component ID: %s", component['id'])
-        queue = component['queue_name']
-        self.consumer_tag = self.channel.basic_consume(queue, self.on_message)
 
     def start_components(self):
         LOGGER.info('Creating exchanges')
@@ -201,13 +188,5 @@ class AmqpServer(object):
 
         self.channel.basic_qos(prefetch_count=1)
         LOGGER.info('Starting components')
-        for component in self.config.settings['components']:
-            mode = component['mode'].upper()
-            if mode == "RPC":
-                self.start_rpc_component(component)
-            elif mode == "PUB":
-                self.start_pub_component(component)
-            elif mode == "SUB":
-                self.start_sub_component(component)
-            else:
-                LOGGER.warning('Unsupported component mode {}'.format(mode))
+        for component in self.components:
+            component.start(self.channel)

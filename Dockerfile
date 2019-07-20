@@ -30,12 +30,12 @@ VOLUME [ "/var/lib/rabbitmq" ]
 
 RUN rabbitmq-plugins --offline enable \
     rabbitmq_management \
-    rabbitmq_consistent_hash_exchange \
+#    rabbitmq_consistent_hash_exchange \
     rabbitmq_federation \
     rabbitmq_federation_management \
-    rabbitmq_mqtt \
+#    rabbitmq_mqtt \
     rabbitmq_shovel \
     rabbitmq_shovel_management \
-    rabbitmq_stomp \
-    rabbitmq_web_stomp \
-    autocluster
+#    rabbitmq_stomp \
+#    rabbitmq_web_stomp \
+#    autocluster

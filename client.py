@@ -8,7 +8,7 @@ def main():
     try:
         import argparse
         parser = argparse.ArgumentParser()
-        parser.add_argument("-u", "--url", type=str, default="amqp://guest:guest@localhost:5672/%2F", help="AMQP server url" )
+        parser.add_argument("-u", "--url", type=str, default="amqp://admin:admin@localhost:5672/", help="AMQP server url" )
         parser.add_argument("-e", "--exchange", type=str, default="task_exchange", help="AMQP exchange name" )
         parser.add_argument("-t", "--exchange-type", type=str, default="topic", help="AMQP exchange type" )
         parser.add_argument("-q", "--queue", type=str, default="task_queue", help="AMQP queue n me" )

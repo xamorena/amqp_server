@@ -1,9 +1,9 @@
 import functools
-import logging
 import time
 import pika
-
+from urllib.parse import urlparse
 from pika.adapters.asyncio_connection import AsyncioConnection
+import logging
 
 LOGGER = logging.getLogger(__name__)
 
@@ -29,8 +29,16 @@ class AmqpSubscriber(object):
 
     def connect(self):
         LOGGER.info('Connecting to %s', self._url)
+        url = urlparse(self._url)
+        creds = pika.PlainCredentials(url.username, url.password)
+        parameters = pika.ConnectionParameters(
+            host=url.hostname,
+            port=url.port,
+            virtual_host=url.path,
+            credentials=creds
+        )
         return AsyncioConnection(
-            parameters=pika.URLParameters(self._url),
+            parameters=parameters,
             on_open_callback=self.on_connection_open,
             on_open_error_callback=self.on_connection_open_error,
             on_close_callback=self.on_connection_closed)

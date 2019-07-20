@@ -2,7 +2,7 @@ import logging
 import sys
 
 LOG_FORMAT = '%(levelname)s @ %(asctime)s - %(name)s: %(message)s'
-LOG_LEVEL = logging.DEBUG
+LOG_LEVEL = logging.INFO
 
 def main():
     server = None
